@@ -127,6 +127,10 @@ class Persistence{
     ShoppingCart*cart;
 
     public:
+      
+      Persistence(ShoppingCart*cart){
+        this->cart=cart;
+      }
      
       virtual void  save(ShoppingCart*cart)=0;
 };
@@ -135,6 +139,9 @@ class Persistence{
 class SaveToSqlDatabase : public Persistence {
 
     public:
+      
+      SaveToSqlDatabase(ShoppingCart* cart)
+        : Persistence(cart) {}
      
     void save(ShoppingCart*cart){
 
@@ -146,6 +153,9 @@ class SaveToMongoDatabase : public Persistence {
 
     public:
      
+     SaveToMongoDatabase(ShoppingCart* cart)
+        : Persistence(cart) {}
+     
     void save(ShoppingCart*cart){
 
         cout<<"Save to Mongo Database"<<endl;
@@ -155,6 +165,9 @@ class SaveToMongoDatabase : public Persistence {
 class SaveToFileDatabase : public Persistence {
 
     public:
+
+     SaveToFileDatabase(ShoppingCart* cart)
+        : Persistence(cart) {}
      
     void save(ShoppingCart*cart){
 
