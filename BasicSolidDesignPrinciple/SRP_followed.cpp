@@ -64,13 +64,44 @@ class ShoppingCart{
 class CartPrintInvoice{
 
     private : 
-     
-    sho
-}
+     ShoppingCart *cart;
+
+    public:
+
+    CartPrintInvoice(ShoppingCart*cart){
+        this->cart=cart;
+    }
+
+    void invoicePrint(){
+
+        for(auto p : cart->getProducts()){
+            cout<<"price -$: "<<p->price<<" "<<"name : "<<p->name<<endl;
+        }
+        return ;
+    }
+};
 
 class CartSaveToDB{
 
-}
+
+    private:
+    
+      ShoppingCart*  cart;
+    
+      public:
+
+      CartSaveToDB(ShoppingCart*cart){
+
+        this->cart=cart;
+      }
+
+      void saveToDB(){
+        
+        cout<<"save to DB"<<endl;
+        
+        return ;
+      }
+};
 
 int main(){
 
@@ -79,10 +110,11 @@ int main(){
     cart->addProduct(new Product("laptop",1500));
     cart->addProduct(new Product("ipad",320));
 
+    CartPrintInvoice* print=new CartPrintInvoice(cart);
+    print->invoicePrint();
 
-    cart->printInvoice();
-
-    cart->saveToDB();
+    CartSaveToDB* save= new CartSaveToDB(cart);
+    save->saveToDB();
 }
 
 
