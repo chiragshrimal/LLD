@@ -40,6 +40,7 @@ private:
 
 public:
 
+// because parent have parameterazed constructor 
     Square(double s) : TwoDShape(s){
         side = s;
     }
